@@ -7,7 +7,8 @@ public class LElement
     public String Name { get { return _name; } }
     public LElement Next;
 
-    public LElement(String name) {
+    public LElement(String name)
+    {
         _name = name;
     }
 }
