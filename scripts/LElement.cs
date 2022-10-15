@@ -2,13 +2,13 @@ using System;
 
 public class LElement
 {
-    private String _name;
+    private String _nome;
 
-    public String Name { get { return _name; } }
-    public LElement Next;
+    public String Nome { get { return _nome; } }
+    public LElement Anterior, Prox;
 
-    public LElement(String name)
+    public LElement(String nome)
     {
-        _name = name;
+        _nome = nome;
     }
 }

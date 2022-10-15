@@ -3,43 +3,83 @@ using System;
 
 public class List : Reference
 {
-    private LElement _head = null;
-    private int _size;
+    private LElement _inicio, _fim;
+    private int _tamanho;
 
     [Signal]
-    delegate void RemovedElement(String name);
+    delegate void RemovedElement(String nome);
 
-    public void Append(String name)
+    public void Insere(String nome)
     {
-        LElement elementToAppend = new LElement(name);
-        if (_head == null)
-            _head = elementToAppend;
+        LElement elementoAInserir = new LElement(nome);
+        
+        if (_tamanho == 0)
+        {
+            _inicio = elementoAInserir;
+            _fim = elementoAInserir;
+            elementoAInserir.Anterior = elementoAInserir;
+            elementoAInserir.Prox = elementoAInserir;
+        }
+        else if (_tamanho == 1)
+        {
+            elementoAInserir.Anterior = _fim;
+            elementoAInserir.Prox = _inicio;
+            _fim = elementoAInserir;
+            _inicio.Anterior = elementoAInserir;
+            _inicio.Prox = elementoAInserir;
+        }
         else
         {
-            LElement el = _head;
-            while (el.Next != _head)
-            {
-                el = el.Next;
-            }
-            el.Next = elementToAppend;
-            elementToAppend.Next = _head;
+            elementoAInserir.Anterior = _fim;
+            elementoAInserir.Prox = _inicio;
+            _fim.Prox = elementoAInserir;
+            _inicio.Anterior = elementoAInserir;
         }
-        _size++;
+        _tamanho++;
     }
 
-    public void Remove(int n)
+    public void Remove(LElement elemento)
     {
-        while (_size != 1)
+        EmitSignal(nameof(RemovedElement), elemento.Nome);
+
+        if (elemento == _inicio)
         {
-            LElement el = _head;
-            LElement previous = null;
+            _inicio = _inicio.Prox;
+        }
+        else if (elemento == _fim)
+        {
+            _fim = _fim.Anterior;
+        }
+
+        elemento.Anterior.Prox = elemento.Prox;
+        elemento.Prox.Anterior = elemento.Anterior;
+
+        _tamanho--;
+    }
+
+    public void Roleta(int n)
+    {
+        while (_tamanho != 1)
+        {
+            LElement el = _inicio;
+
             for (int i = 0; i < n; i++)
             {
-                previous = el;
-                el = el.Next;
+                el = el.Prox;
             }
-            previous.Next = el.Next;
-            EmitSignal(nameof(RemovedElement), el.Name);
+
+            Remove(el);
+        }
+    }
+
+    public void MostraElementos()
+    {
+        LElement el = _inicio;
+
+        for (int i = 0; i < _tamanho; i++)
+        {
+            GD.Print(el.Nome);
+            el = el.Prox;
         }
     }
 }

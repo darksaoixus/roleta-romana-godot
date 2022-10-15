@@ -8,15 +8,16 @@ public class Test : Node
     public override void _Ready()
     {
         _list.Connect("RemovedElement", this, nameof(OnListRemovedElement));
-        _list.Append("jorge");
-        _list.Append("paulo");
-        _list.Append("cleiton");
-        _list.Append("rafael");
-        _list.Remove(2);
+        _list.Insere("jorge");
+        _list.Insere("paulao");
+        _list.Insere("cleiton");
+        _list.MostraElementos();
+        _list.Roleta(2);
+        _list.MostraElementos();
     }
 
     public void OnListRemovedElement(String name)
     {
-        GD.Print(name);
+        GD.Print("Removeu " + name);
     }
 }
