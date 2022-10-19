@@ -2,6 +2,7 @@ class_name List
 extends Reference
 
 
+signal element_appended(new_element)
 signal round_played(removed_element, next_start)
 
 var head: LElement
@@ -9,7 +10,6 @@ var tail: LElement
 var size: int = 0
 
 func append(element: LElement) -> void:
-	size += 1
 	if size == 0:
 		head = element
 		tail = element
@@ -21,6 +21,8 @@ func append(element: LElement) -> void:
 		tail.next = element
 		head.previous = element
 		tail = element
+	size += 1
+	emit_signal("element_appended", element)
 
 
 func remove(element: LElement) -> void:
