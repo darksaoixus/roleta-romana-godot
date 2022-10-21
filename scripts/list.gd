@@ -1,3 +1,4 @@
+class_name List
 extends Reference
 
 
@@ -32,8 +33,12 @@ func remove(element: LElement) -> void:
 		element.previous.next = element.next
 
 
-func play_round(n: int, start: LElement) -> void:
-	var el := start
-	for _i in range(n):
-		el = el.next
-	remove(el)
+func play_round(n: int, start: LElement) -> LElement:
+	if size != 1:
+		var el := start
+		for _i in range(n - 1):
+			el = el.next
+		print(el.text)
+		remove(el)
+		return el.next
+	return null

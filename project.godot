@@ -18,15 +18,22 @@ _global_script_classes=[ {
 "class": "LElement",
 "language": "GDScript",
 "path": "res://scripts/element.gd"
+}, {
+"base": "Reference",
+"class": "List",
+"language": "GDScript",
+"path": "res://scripts/list.gd"
 } ]
 _global_script_class_icons={
 "GitAPI": "",
-"LElement": ""
+"LElement": "",
+"List": ""
 }
 
 [application]
 
 config/name="RoletaRomanaGodot"
+run/main_scene="res://scenes/game.tscn"
 config/icon="res://icon.png"
 
 [display]
