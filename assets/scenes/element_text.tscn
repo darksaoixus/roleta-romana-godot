@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.290196, 0.223529, 0.431373, 1 )
+
+[node name="Label" type="Label"]
+margin_right = 40.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 200, 50 )
+custom_styles/normal = SubResource( 1 )
+text = "dqwwqqdqwdqwdwqqw"
+align = 1
+valign = 1
