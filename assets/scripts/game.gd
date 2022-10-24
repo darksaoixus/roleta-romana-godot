@@ -40,8 +40,9 @@ func _update_removed_elements(element: LElement) -> void:
 
 
 func _on_ElementNameEdit_text_entered(new_text: String) -> void:
-	list.append(new_text)
-	$"%ElementNameEdit".text = ""
+	if new_text != "":
+		list.append(new_text)
+		$"%ElementNameEdit".text = ""
 
 
 func _on_NEdit_text_entered(new_text: String) -> void:
