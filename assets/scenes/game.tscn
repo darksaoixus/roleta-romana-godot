@@ -14,38 +14,53 @@ anchor_bottom = 1.0
 
 [node name="MarginContainer" type="MarginContainer" parent="Screen"]
 margin_right = 1280.0
-margin_bottom = 64.0
+margin_bottom = 70.0
 custom_constants/margin_right = 20
 custom_constants/margin_top = 20
 custom_constants/margin_left = 20
-custom_constants/margin_bottom = 20
 
 [node name="TopBar" type="HBoxContainer" parent="Screen/MarginContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 1260.0
-margin_bottom = 44.0
+margin_bottom = 70.0
+custom_constants/separation = 10
 
-[node name="LineEdit" type="LineEdit" parent="Screen/MarginContainer/TopBar"]
-margin_right = 58.0
-margin_bottom = 24.0
+[node name="ElementNameEdit" type="LineEdit" parent="Screen/MarginContainer/TopBar"]
+unique_name_in_owner = true
+margin_right = 200.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 200, 50 )
+placeholder_text = "Nome do elemento"
 
-[node name="LineEdit2" type="LineEdit" parent="Screen/MarginContainer/TopBar"]
-margin_left = 62.0
-margin_right = 120.0
-margin_bottom = 24.0
+[node name="NEdit" type="LineEdit" parent="Screen/MarginContainer/TopBar"]
+unique_name_in_owner = true
+margin_left = 210.0
+margin_right = 410.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 200, 50 )
+placeholder_text = "Número n"
+
+[node name="NextStepButton" type="Button" parent="Screen/MarginContainer/TopBar"]
+unique_name_in_owner = true
+margin_left = 420.0
+margin_right = 520.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 100, 0 )
+disabled = true
+text = ">"
 
 [node name="ElementContainers" type="HBoxContainer" parent="Screen"]
-margin_top = 68.0
+margin_top = 74.0
 margin_right = 1280.0
-margin_bottom = 720.0
+margin_bottom = 732.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Elements" type="VBoxContainer" parent="Screen/ElementContainers"]
 unique_name_in_owner = true
 margin_right = 638.0
-margin_bottom = 652.0
+margin_bottom = 658.0
 size_flags_horizontal = 3
 custom_constants/separation = 10
 alignment = 1
@@ -54,7 +69,26 @@ alignment = 1
 unique_name_in_owner = true
 margin_left = 642.0
 margin_right = 1280.0
-margin_bottom = 652.0
+margin_bottom = 658.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 1
+
+[node name="NError" type="AcceptDialog" parent="."]
+margin_left = 453.0
+margin_top = 138.0
+margin_right = 749.0
+margin_bottom = 213.0
+window_title = "Alerta!"
+
+[node name="Text" type="Label" parent="NError"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+text = "\"n\" precisa ser um número inteiro positivo!"
+
+[connection signal="text_entered" from="Screen/MarginContainer/TopBar/ElementNameEdit" to="." method="_on_ElementNameEdit_text_entered"]
+[connection signal="text_entered" from="Screen/MarginContainer/TopBar/NEdit" to="." method="_on_NEdit_text_entered"]
